@@ -1,0 +1,13 @@
+<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30" class="p-20 w-600 mnh-200">
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="w-100p border-bottom pb-5">
+        <strong>Return Item(s)</strong>
+        <button mat-icon-button color="primary" (click)="close(false)">&times;</button>
+    </div>
+    <div class="text-center">
+        <p>Are you sure you want to return the item(s)?</p>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10">
+        <button (click)="close(false)" mat-flat-button color="accent">Cancel</button>
+        <button (click)="close(true)" mat-flat-button color="primary">Proceed</button>
+    </div>
+</div>

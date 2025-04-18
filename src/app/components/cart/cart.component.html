@@ -1,0 +1,52 @@
+<div fxLayout="row">
+    <h5 class="cursor-pointer" [matMenuTriggerFor]="cartMenu" fxLayoutAlign="center center">
+        <span class="cart-count pt-49">
+            <img src="/assets/icons/cart-icon.svg" />
+            <em>{{totalItems}}</em>
+        </span>
+    </h5>
+</div>
+
+<mat-menu #cartMenu="matMenu">
+    <div fxLayout="column" class="w-100p cart-dropdown">
+        <!-- Scrollable Product List -->
+        <div (click)="$event.stopPropagation()" fxLayout="column" class="product-list w-100p" fxFlex="auto" fxLayoutGap="10">
+            <div fxLayout="column" class="container w-100p mb-10" fxLayoutGap="10">
+                @for (product of cartItems; track $index) {
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <img fxFlex="20%" [src]="product.url" [alt]="product.name" title="product.desc" loading="lazy">
+                    <small fxFlex="60%" fxLayout="column" fxLayoutGap="5" class="pl-5">
+                        <strong class="mb-10">{{product.name}}</strong>
+                        <strong>{{product.quantity}} x {{product.cost | standardCurrency}}</strong>
+                    </small>
+                    <button fxFlex="20%" mat-icon-button (click)="removeFromCart(product)">
+                        <mat-icon class="font-size-large" color="warn">delete</mat-icon>
+                    </button>
+                </div>
+                }
+                @if (!cartItems.length) {
+                <p class="font-size-medium fw-b">Your cart is empty!</p>
+                <p>Start adding items to your cart to see them here.</p>
+                }
+            </div>
+        </div>
+    
+        <!-- Fixed Checkout Section -->
+        @if(cartItems.length) {
+        <div fxLayout="column" fxLayoutAlign="end center" class="checkout-footer w-100p p-10">
+            <small>Cart Total</small>
+            <strong>{{totalPrice | standardCurrency}}</strong>
+            <button 
+                class="w-100p mt-10" 
+                mat-raised-button 
+                color="primary" 
+                (click)="cartMenu.closed.emit()" 
+                [routerLink]="'/checkout'"
+            >
+                Checkout
+            </button>
+        </div>
+        }
+    </div>
+    
+</mat-menu>

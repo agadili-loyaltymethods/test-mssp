@@ -1,0 +1,23 @@
+<div class="w-600 h-250">
+  <div fxLayout="row" fxLayoutAlign="start center" class="pl-20 pr-20 pt-10 pb-0">
+    <h3 class="m-0">Redeem Coupon</h3>
+    <span fxFlex></span>
+    <button mat-icon-button [mat-dialog-close]="false">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <mat-divider></mat-divider>
+  <div fxLayout="column" class="pl-20 pr-20">
+    <div fxLayout="row" fxLayoutAlign="start center" class="mt-20">
+      <p>Are you sure you want to redeem your <span class="color-primary ml-5"> {{data.coupon.desc}} ?</span></p>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="start start" class="mt-20">
+      <p class="color-primary text-left w-100p">Coupon Code</p>
+      <span class="color-primary bg-light-primary p-10 coupon-code">{{data.coupon.code}}</span>
+    </div>
+    <mat-dialog-actions align="end">
+      <button mat-button class="mr-20" [mat-dialog-close]="false">Cancel</button>
+      <button type="submit" mat-flat-button color="primary" class="h-50 w-100" [mat-dialog-close]="true">Redeem</button>
+    </mat-dialog-actions>
+  </div>
+</div>

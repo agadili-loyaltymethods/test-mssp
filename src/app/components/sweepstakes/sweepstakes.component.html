@@ -1,0 +1,39 @@
+@if(isLoading){
+<ng-container *ngTemplateOutlet="Loader"></ng-container>
+}@else{
+@if(sweepstakes){
+<ng-container *ngTemplateOutlet="Sweepstakes"></ng-container>
+}@else{
+    <app-no-data>No sweepstakes available.</app-no-data>
+}
+}
+
+<ng-template #Sweepstakes>
+    <div fxLayout="column" class="mt-20">
+        <h3 class="mt-0">Sweepstakes</h3>
+        <div fxLayout="row" fxLayoutGap="20">
+            <div class="m-0" fxFlex fxLayout="row wrap" fxLayoutGap="10px grid">
+                <div fxFlex="25">
+                    <mat-card class="box-shadow-none border-gray bg-white">
+                        <mat-card-content fxLayout="column" fxLayoutAlign="start">
+                            <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20">
+                                <img class="w-100" src="assets/logo-login.svg">
+                                <h3>{{ sweepstakes.title }}</h3>
+                                <div class="color-gray">{{ sweepstakes.desc }}</div>
+                                <small class="color-gray">Expires {{ sweepstakes.expiresOn| expiryCheck
+                                }}</small>
+                                    <button mat-stroked-button color="primary" class="w-100p mt-20" (click)="showSweepstake(sweepstakes)">Participate Now</button>
+                               
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<ng-template #Loader>
+    <div class="mt-50">
+        <app-card-mini-skeleton></app-card-mini-skeleton>
+    </div>
+</ng-template>

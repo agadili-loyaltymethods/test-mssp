@@ -1,0 +1,44 @@
+
+@if(isLoading){
+    <ng-container *ngTemplateOutlet="Loader"></ng-container>
+}@else{
+    @if(campaigns.length){
+        <ng-container *ngTemplateOutlet="Campaigns"></ng-container>
+    }@else{
+        <app-no-data>No Campaigns available.</app-no-data>
+    }
+}
+
+<ng-template #Campaigns>
+    <div fxLayout="column" class="mt-20">
+        <h3 class="mt-0">Available Campaigns({{campaigns.length}})</h3>
+        <div fxLayout="row" fxLayoutGap="20">
+            <div fxFlex fxLayout="row wrap" fxLayoutGap="10px grid">
+                @for (campaign of campaigns; track $index) {
+                <div fxFlex="30">
+                    <mat-card class="box-shadow-none border-gray bg-white">
+                        <mat-card-content fxLayout="column" fxLayoutGap="30">
+                            <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10">
+                                <img src="assets/icons/nordy-cash.png">
+                                <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10">
+                                    <h2 class="color-primary">{{ campaign.name }}</h2>
+                                    <div class="line-height-adjust">{{ campaign.desc }}</div>
+                                    <small class="color-gray">Expires {{ staticDate | date: 'dd/MM/yyyy' }}</small>
+                                </div>
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="center center">
+                                <button mat-stroked-button color="primary" class="w-100p">Redeem Now</button>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+
+<ng-template #Loader>
+    <app-loader></app-loader>
+</ng-template>

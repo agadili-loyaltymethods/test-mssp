@@ -1,0 +1,30 @@
+img{
+    width: 70px;
+}
+
+button {
+    border: 2px solid var(--primary) !important;
+}
+
+.img-sec{
+    border-right: 1px dashed var(--gray);
+    margin-right: 20px !important;
+}
+
+.card-text-ellipsis{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-clamp: 2;
+    box-orient: vertical;
+}
+
+.book-now-alignment{
+    align-items: flex-end !important;
+}
+.book-now-radius{
+    border-radius: 30px !important;
+}

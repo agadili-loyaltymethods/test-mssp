@@ -1,0 +1,46 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+    <div fxLayout="column" fxLayoutAlign="center center" class="w-1300 mt-20">
+        @if(isLoading){
+        <div fxLayout="column" fxLayoutGap="20" fxLayoutAlign="space-between center" class="w-100p">
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="20px grid" class="mb-40 w-100p">
+                @for (row of [1,2,3,4,5,6,7,8, 9, 10]; track $index){
+                <mat-card fxFlex="20" class="skeleton-card">
+                    <mat-card-content class="skeleton">
+                        <div class="skeleton-left">
+                            <div class="square h-150 w-100p mb-15"></div>
+                            <div class="line h-20 w-100p mb-10"></div>
+                            <div class="line h-10 w-100p mb-10"></div>
+                            <div class="line h-40 w-100p mb-20"></div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+                }
+
+            </div>
+        </div>
+        }@else{
+        <div fxLayout="row" fxLayoutAlign="center center" class="filter-container mb-20">
+            <mat-chip-listbox hideSingleSelectionIndicator>
+                @for (category of allCategories; track $index) {
+                <mat-chip-option class="pl-10 pr-10" [ngClass]="{'selected': selectedCategory === category}"
+                    (click)="selectCategory(category)">
+                    {{ category }}
+                </mat-chip-option>
+                }
+            </mat-chip-listbox>
+        </div>
+        <div fxLayout="row wrap" fxLayoutGap="15px" fxLayoutAlign="start start" class="w-1300">
+            @for (product of filteredProducts; track $index) {
+            <div fxFlex="23">
+                <app-product [product]="product"></app-product>
+            </div>
+            }
+            @if(!filteredProducts.length){
+            <app-no-data>No products available.</app-no-data>
+            }
+        </div>
+        }
+    </div>
+
+
+</div>

@@ -1,0 +1,21 @@
+.selected {
+  background-color: var(--primary) !important;
+  --mdc-chip-label-text-color: var(--white);
+}
+
+.filter-container {
+  border-radius: 50px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  background-color: #e0e0e0;
+  overflow: hidden;
+}
+
+.skeleton-card {
+  width: 200px;
+  height: 300px;
+  margin: 20px;
+  padding-right: 0px !important;
+}

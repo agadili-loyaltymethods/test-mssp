@@ -1,0 +1,18 @@
+@if(allLocations.length){
+<div fxLayout="column" fxFlex="100" fxLayoutAlign="center center">
+    <mat-form-field appearance="outline" class="p-0">
+        <mat-label>Property Name</mat-label>
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <span class="material-symbols-outlined distance-icon">distance</span>
+            <mat-select [formControl]="formCtrl" (selectionChange)="setLocation()">
+                @for(option of allLocations; track option){
+                <mat-option [value]="option.name">
+                    {{(option.ext.operator && option.ext.operator !== 'PlayNow')? option.ext.operator + ' - ' :
+                    ''}}{{option.name}}
+                </mat-option>
+                }
+            </mat-select>
+        </div>
+    </mat-form-field>
+</div>
+}

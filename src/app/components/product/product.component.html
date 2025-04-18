@@ -1,0 +1,38 @@
+<div fxFlex="1 1 auto" fxLayout="column" fxLayoutAlign="start start" class="card" [ngClass]="{'hemming-card': product.category === hemming}">
+  @if(product.category === hemming){
+
+    <img class="hemming" [src]="product.url" [alt]="product.name" loading="lazy">
+  }@else{
+
+    <img class="img" [src]="product.url" [alt]="product.name" loading="lazy">
+  }
+  <p class="fw-b mt-5 mb-5">{{product.name}}</p>
+  <div class="w-100p" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <p class="fw-b m-0 mr-5">Qty:</p>
+    <mat-form-field appearance="outline" class="w-80">
+      <mat-select [(value)]="quantity" (selectionChange)="onSelectionChange($event, product)">
+        @for(quantity of [1, 2,3,4,5,6,7,8,9,10]; track quantity){
+        <mat-option [value]="quantity">{{quantity}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    
+    </div>
+    <p>{{product.cost| standardCurrency}}</p>
+  </div>
+  <!-- <p class="description mt-5">{{product.desc}}</p> -->
+  @if(product.ext?.nonReturnable){
+  <small class="red-label mt-10 mb-10">Non Returnable</small>
+  }
+  @if(!isInCart()){
+  <button class="button w-100p h-40 mb-10" mat-flat-button color="primary" type="button" (click)="addToCart()">
+    <!-- <mat-icon>shopping_bag</mat-icon> -->
+    Add to Bag</button>
+  } @else{
+  <button class="button w-100p h-40 mb-10 stroked-btn" mat-stroked-button color="primary" type="button"
+    (click)="removeFromCart()">
+    <!-- <mat-icon>shopping_bag</mat-icon> -->
+    Remove from Bag</button>
+  }
+</div>

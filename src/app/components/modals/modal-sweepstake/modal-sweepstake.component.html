@@ -1,0 +1,45 @@
+@if(!isLoading){
+<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30" class="p-20 w-600 mnh-200">
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="w-100p">
+        <strong>{{data.title}}</strong>
+        <button mat-icon-button color="primary" (click)="close(status !== null)">&times;</button>
+    </div>
+    @if(!status){
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10">
+        <img src="assets/sweepstake.png" />
+        <small><strong>{{data.summary ?? data.desc}}</strong></small>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10">
+        <button mat-flat-button color="accent" (click)="close()">Cancel</button>
+        <button mat-flat-button color="primary" (click)="submit()">Submit</button>
+    </div>
+
+    }@else if (status === 'lost') {
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10" class="w-60p">
+        <mat-icon class="lost-icon">close</mat-icon>
+        <small class="text-center">We appreciate your entry, we regret to inform you that you were not selected as one
+            of the winners this
+            time.</small>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10">
+        <button mat-flat-button color="accent" (click)="close(true)">Close</button>
+    </div>
+    }@else if(status === 'won'){
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10">
+        <img src="assets/sweepstake.png" />
+        <small><strong>Congratulations!</strong></small>
+        <h4>You have received <span class="color-primary font-size-large">{{earnedPoints | number}}</span> Points</h4>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10">
+        <button mat-flat-button color="primary" (click)="redirect()">Check Available Rewards</button>
+        <button mat-flat-button color="accent" (click)="close(true)">Cancel</button>
+    </div>
+    }
+
+
+</div>
+}@else{
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30" class="p-20 w-600 mnh-200">
+        <app-loader></app-loader>
+    </div>
+}

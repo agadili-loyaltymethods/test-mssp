@@ -1,0 +1,48 @@
+@if(isLoading){
+<ng-container *ngTemplateOutlet="Loader"></ng-container>
+}@else{
+@if(offers.length){
+<ng-container *ngTemplateOutlet="Offers"></ng-container>
+}@else{
+    <app-no-data>No Offers available.</app-no-data>
+}
+}
+
+<ng-template #Offers>
+    <div fxLayout="column" class="mt-20">
+        <h3 class="mt-0">Available offers ({{offers.length}})</h3>
+        <div fxLayout="row" fxLayoutGap="20">
+            <div class="m-0" fxFlex fxLayout="row wrap" fxLayoutGap="10px grid">
+                @for (offer of offers; track $index) {
+                <div fxFlex="50">
+                    <mat-card class="box-shadow-none border-gray bg-white">
+                        <mat-card-content fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10" class="h-140">
+                            <div class="w-100 img-sec"><img src="assets/bclc-logo.png"></div>
+                            <div fxLayout="row" fxLayoutAlign="space-between start" fxFlex="100" class="w-500">
+                                <div fxLayout="column" fxLayoutGap="10" fxFlex="85">
+                                    <h3 class="mt-10 card-text-ellipsis">{{ offer.name }}</h3>
+                                    <p class="m-0 card-text-ellipsis">{{ offer.desc }}</p>
+                                    @if(offer.expirationDate){
+                                    <small class="color-gray line-height-adjust card-text-ellipsis">Expires {{ offer.expirationDate | expiryCheck
+                                        }}</small>
+                                    }
+                                </div>
+                                <div fxLayout="column" fxFlex="20" fxLayoutAlign="end" class="book-now-alignment" *ngIf="offer.ext?.awardType?.toLowerCase() === 'booking offer'">
+                                    <button mat-flat-button color="primary" (click)="openExternalLink('hotel-booking', offer.name)" class="mt-30 book-now-radius">Book Now</button>
+                                </div>
+                            </div>                            
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+
+<ng-template #Loader>
+    <div class="mt-50">
+        <app-card-mini-skeleton></app-card-mini-skeleton>
+    </div>
+</ng-template>

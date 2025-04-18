@@ -1,0 +1,292 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+    <div fxLayout="column" class="w-1300 mt-20" fxLayoutGap="20">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <mat-card class="border-gray w-100p">
+                <mat-card-content class="pt-20">
+                    <div fxLayout="row" fxLayoutAlign="space-between end" fxLayoutGap="30"
+                        class="points-header pl-15 pr-15">
+                        <div fxLayout="row" fxLayoutAlig="start center">
+                            <h3 class="mt-13 mr-10 font-size-medium">Activity History</h3>
+                            <button mat-icon-button class="refresh-btn" (click)="getActivityHistory()">
+                                <mat-icon>refresh</mat-icon>
+                            </button>
+                        </div>
+                        <div>
+                            <mat-form-field>
+                                <input color="primary" matInput (keyup)="applyFilter($event)" placeholder="Search" />
+                                <mat-icon color="accent" matSuffix>search</mat-icon>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="ph-table overflow-y-auto">
+                        <mat-accordion>
+                            <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
+                                <ng-container matColumnDef="index">
+                                    <th mat-header-cell *matHeaderCellDef>#</th>
+                                    <td mat-cell *matCellDef="let element;">{{ element.index }}</td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="date">
+                                    <th mat-header-cell *matHeaderCellDef>Date</th>
+                                    <td mat-cell *matCellDef="let element">{{ element.date | date }}</td>
+                                </ng-container>
+
+                                <!-- Type Column -->
+                                <ng-container matColumnDef="type">
+                                    <th mat-header-cell *matHeaderCellDef>Activity</th>
+                                    <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+                                </ng-container>
+
+                                <!-- Booking ID Column -->
+                                <ng-container matColumnDef="bookingId">
+                                    <th mat-header-cell *matHeaderCellDef>Folio #</th>
+                                    <td mat-cell *matCellDef="let element">{{ element.bookingId }}</td>
+                                </ng-container>
+
+                                <!-- Location Type Column -->
+                                <ng-container matColumnDef="location">
+                                    <th mat-header-cell *matHeaderCellDef>Location</th>
+                                    <td mat-cell *matCellDef="let element">{{ element.location }}</td>
+                                </ng-container>
+
+                                <!-- Description Column -->
+                                <ng-container matColumnDef="desc">
+                                    <th mat-header-cell *matHeaderCellDef>Details</th>
+                                    <td mat-cell *matCellDef="let element">{{ element.gaming ? 'Gaming' : element.desc
+                                        }}
+                                    </td>
+                                </ng-container>
+
+                                <!-- Total Spend -->
+                                <ng-container matColumnDef="totalSpend">
+                                    <th mat-header-cell *matHeaderCellDef>Total Spend</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div class="p-5 highlight">
+                                            {{ element.spend ? (element.spend | standardCurrency) : '-'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+
+                                <!-- Total Column -->
+                                <ng-container matColumnDef="total">
+                                    <th mat-header-cell *matHeaderCellDef>Status Points</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div class="p-5 highlight"
+                                            [ngClass]="{'earns': element.total > 0,  'spends': element.total < 0, 'no-transactions': element.total === 0}">
+                                            {{ element.total ? (element.total | number: '1.0-0') : '-'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+
+                                <!-- Provider Status Column -->
+                                <ng-container matColumnDef="statusPoints">
+                                    <th mat-header-cell *matHeaderCellDef>SP Status Points</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div class="p-5 highlight"
+                                            [ngClass]="{'earns': element.serviceStatusPoints > 0,  'spends': element.serviceStatusPoints < 0, 'no-transactions': element.serviceStatusPoints === 0}">
+                                            {{ element.serviceStatusPoints ? (element.serviceStatusPoints | number: '1.0-0') : '-'}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+
+
+                                <ng-container matColumnDef="rewardEarned">
+                                    <th mat-header-cell *matHeaderCellDef>Points</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div class="p-5 highlight"
+                                            [ngClass]="{'earns': element.basePoints > 0,  'spends': element.basePoints < 0, 'no-transactions': element.basePoints === 0}">
+                                            {{element.basePoints ? (element.basePoints | number: '1.0-0' ) : '-' }}
+                                        </div>
+
+                                    </td>
+                                </ng-container>
+
+                                <!-- <ng-container matColumnDef="rewardUsed">
+                                    <th mat-header-cell *matHeaderCellDef>Points Used</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div class="p-5 highlight"
+                                            [ngClass]="{'earns': element.rewardUsed < 0,  'spends': element.rewardUsed > 0, 'no-transactions': element.rewardUsed === 0}">
+                                            {{ element.rewardUsed ? (element.rewardUsed | number: '1.0-0') :'-' }}
+                                        </div>
+                                    </td>
+                                </ng-container> -->
+
+                                <!-- Points Column -->
+                                <ng-container matColumnDef="points">
+                                    <th mat-header-cell *matHeaderCellDef>Points</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div class="p-5 highlight"
+                                            [ngClass]="{'earns': element.points > 0, 'spends': element.points < 0, 'no-transactions': element.points === 0}">
+                                            {{getSign(element.points)}}{{ element.points ? (element.points | number :
+                                            '1.0-0') :'-' }}
+                                        </div>
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="expand">
+                                    <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        @if(element.isExpandable){
+                                        <button mat-icon-button aria-label="expand row"
+                                            (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
+                                            @if (expandedElement === element) {
+                                            <mat-icon>keyboard_arrow_up</mat-icon>
+                                            } @else {
+                                            <mat-icon>keyboard_arrow_down</mat-icon>
+                                            }
+                                        </button>
+                                        }
+
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="expandedDetail">
+                                    <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length +1"
+                                        class="p-0">
+                                        <div [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                                            <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-around start"
+                                                fxLayoutGap="20px">
+                                                <div fxFlex="50" class="m-30 w-50p">
+                                                    @if (element.nestedData?.length) {
+                                                    @for(data of element.nestedData; track $index){
+                                                    <div>
+                                                        <h4>{{ data.title }}</h4>
+                                                        <div fxLayout="column" fxLayoutGap="15">
+                                                            <div fxLayout="row" fxLayoutAlign="space-between">
+                                                                <span>{{ data.subTotal?.key
+                                                                    }}</span>
+                                                                <span>{{ data.subTotal?.value |
+                                                                    currency }}</span>
+                                                            </div>
+
+                                                            @for(offer of data.offers; track $index){
+                                                            <div fxLayout="row" fxLayoutAlign="space-between center"
+                                                                class="color-green">
+                                                                <span>{{ offer.key }}</span>
+                                                                <span>{{ offer.value | currency }}</span>
+                                                            </div>
+                                                            }
+
+                                                            <div fxLayout="row" fxLayoutAlign="space-between center">
+                                                                <span>{{ data.tax?.key }}</span>
+                                                                <span>{{ data.tax?.value | currency
+                                                                    }}</span>
+                                                            </div>
+
+                                                            @if(data.gratuity){
+                                                            <div fxLayout="row" fxLayoutAlign="space-between center">
+                                                                <span>{{ data.gratuity?.key }}</span>
+                                                                <span>{{ data.gratuity?.value | currency
+                                                                    }}</span>
+                                                            </div>
+                                                            }
+
+                                                            <div fxLayout="row" fxLayoutAlign="space-between center"
+                                                                class="font-size-medium mb-20">
+                                                                <span>{{ data.total?.key }}</span>
+                                                                <span>{{ data.total?.value |
+                                                                    currency }}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    }
+                                                    }@else if(element.gaming){
+                                                    <div>
+                                                        <h4>Casino</h4>
+                                                        <div fxLayout="column" fxLayoutGap="15">
+                                                            <div fxLayout="row" fxLayoutAlign="space-between">
+                                                                <span>Cash In</span>
+                                                                <span>{{ element.gaming.coinIn | currency }}</span>
+                                                            </div>
+
+                                                            <div fxLayout="row" fxLayoutAlign="space-between">
+                                                                <span>Cash Out</span>
+                                                                <span>{{ element.gaming.coinOut | currency }}</span>
+                                                            </div>
+
+                                                            <div fxLayout="row" fxLayoutAlign="space-between">
+                                                                <span>Wager Amount</span>
+                                                                <span>{{ element.gaming.wagerAmount | currency }}</span>
+                                                            </div>
+
+                                                            <div fxLayout="row" fxLayoutAlign="space-between">
+                                                                <span>Free Play Credit</span>
+                                                                <span>{{ element.gaming.fpCredit | currency
+                                                                    }}</span>
+                                                            </div>
+
+                                                            <div fxLayout="row" fxLayoutAlign="space-between">
+                                                                <span>Session Start Time</span>
+                                                                <span>{{ element.gaming.sessionStartDate | date : 'MMM
+                                                                    d, yyyy h:mm a'
+                                                                    }}</span>
+                                                            </div>
+
+                                                            <div fxLayout="row" fxLayoutAlign="space-between">
+                                                                <span>Session End Time</span>
+                                                                <span>{{ element.gaming.sessionEndDate | date : 'MMM d,
+                                                                    yyyy h:mm a'
+                                                                    }}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    }@else {
+                                                    <app-no-data>No transactions found.</app-no-data>
+                                                    }
+                                                </div>
+                                                <div fxFlex="50" class="m-30 w-50p">
+                                                    @if (element.summary) {
+                                                    <div>
+                                                        <h4>Summary</h4>
+                                                        <div>
+                                                            @for(summary of element.summary; track $index){
+                                                            <div fxLayout="row" fxLayoutAlign="space-between center"
+                                                                class="font-size-medium mb-20">
+                                                                <span class="color-gray">{{ summary.key }}</span>
+                                                                <span>{{ summary.value | currency }}</span>
+                                                            </div>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns" class="agreement-table-row"></tr>
+                                <tr mat-row *matRowDef="let element; columns: displayedColumns;"
+                                    class="example-element-row"
+                                    [class.example-expanded-row]="expandedElement === element">
+                                </tr>
+                                <tr mat-row *matRowDef="let row; columns: ['expandedDetail']"
+                                    class="example-detail-row"></tr>
+                            </table>
+                        </mat-accordion>
+                        @if(dataSource && (dataSource.data.length === 0 || dataSource.filteredData.length === 0) &&
+                        !skeletonLoader){
+                        <app-no-data>No data found.</app-no-data>
+                        }
+                        @if(skeletonLoader){
+                        <div class="table-skeleton">
+                            <table class="tg">
+                                @for (row of [1,2,3,4,5,6,7,8]; track $index){
+                                <tr>
+                                    @for(line of [1,2,3,4,5,6]; track $index){
+                                    <td class="tg-cly1">
+                                        <div class="line"></div>
+                                    </td>
+                                    }
+                                </tr>
+                                }
+                            </table>
+                        </div>
+                        }
+                    </div>
+                    <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 15, 25, 50, 100]"
+                        showFirstLastButtons></mat-paginator>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

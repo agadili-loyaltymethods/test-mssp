@@ -1,0 +1,28 @@
+
+
+  @if(!isLoading){
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10" class="p-20 w-450">
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="w-100p border-bottom pb-5">
+            <strong>Book a Stylist Appoointment</strong>
+            <button mat-icon-button color="primary" (click)="close(false)">&times;</button>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="10">
+            <div fxFlex="1 1 auto" class="container" fxLayout="column" fxLayoutAlign="space-between center">
+                <img [src]="products[0]['url']" [alt]="products[0]['name']" loading="lazy">
+                  <h4 class="mb-0 pl-10 pr-10 w-90p">{{products[0]['name']}}</h4>
+                  <p class="description mt-5 pl-10 pr-10 w-90p">{{products[0]['desc']}}</p>
+                  <strong class="font-size-large pl-10 pr-10 w-90p">{{(products[0]['cost']) | standardCurrency}}</strong>
+              </div>
+    
+        </div>
+        <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20" class="pt-30 w-100p">
+            <button mat-button color="accent" (click)="close()">Cancel</button>
+            <button mat-flat-button color="primary" (click)="submit()">Confirm Booking</button>
+        </div>
+    </div>
+
+    }@else{
+    <div fxLayout="column" fxLayoutAlign="end center" fxLayoutGap="30" class="p-20 w-600 mnh-200">
+        <app-loader></app-loader>
+    </div>
+    }
