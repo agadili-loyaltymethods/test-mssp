@@ -1,0 +1,11 @@
+@if(isAuthenticated$ | async){
+    <app-header></app-header>
+}
+@else{
+    <div class="c-loader" fxLayoutAlign="center center">
+        <div [ngClass]="{'loader': isLogin}"></div>
+    </div>
+}
+<main [ngClass]="{'adjust-header-height': isAuthenticated$|async}">
+    <router-outlet></router-outlet>
+</main>
