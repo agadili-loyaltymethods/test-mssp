@@ -5,3 +5,5 @@ src/app/classes/*
 src/app/constatnts/*
 src/app/enums/*
 src/app/models/*
+src/app/services/*
+src/app/guards/*
