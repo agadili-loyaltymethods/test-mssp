@@ -1,0 +1,7 @@
+src/assets/*
+src/environments/*
+src/styles/*
+src/app/classes/*
+src/app/constatnts/*
+src/app/enums/*
+src/app/models/*
