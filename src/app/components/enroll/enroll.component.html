@@ -1,0 +1,60 @@
+<!-- <div fxFlex class="container" fxLayout="row" fxLayoutAlign="center">
+  <div fxFlex="70" fxLayout="column" class="left-column" fxLayoutAlign="end start">
+  </div>
+  <div fxFlex="30" fxLayout="column" fxLayoutAlign="start center">
+    <div fxLayout="row" fxLayoutAlign="center" class="mt-100 mb-50">
+      <img src="/assets/logo-login.svg" alt="Logo" width="250">
+    </div>
+    <div fxLayout="row" fxFlex="100" fxLayoutAlign="center start" class="w-100p">
+      <div fxLayout="column" fxLayoutAlign="center" class="w-80p">
+        <form [formGroup]="formGroup" fxLayout="column" fxLayoutAlign="center" fxLayoutGap="10px" (submit)="submit()">
+          <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+            <mat-form-field appearance="outline">
+              <mat-label>First Name</mat-label>
+              <input formControlName="firstName" matInput type="text" id="firstName">
+              <mat-error>First Name is requried</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Last Name</mat-label>
+              <input formControlName="lastName" matInput type="text" id="lastName">
+              <mat-error>Last Name is requried</mat-error>
+            </mat-form-field>
+          </div>
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input formControlName="email" matInput type="email" id="email">
+            <mat-error>Valid Email is requried</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input formControlName="password" matInput type="password" id="password">
+            <mat-error>Password is requried</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Confirm Password</mat-label>
+            <input formControlName="confirmPassword" matInput type="password" id="confirmPassword">
+          </mat-form-field>
+          @if(formGroup.controls['confirmPassword'].dirty && formGroup.errors?.['passwordMismatch']){
+          <div
+            class="mat-mdc-form-field-subscript-wrapper mat-mdc-form-field-bottom-align mat-mdc-form-field-subscript-dynamic-size">
+            <div class="mat-mdc-form-field-error-wrapper" style="opacity: 1; transform: translateY(0%);">
+              <mat-error class="mat-mdc-form-field-error mat-mdc-form-field-bottom-align">
+                Passwords must match
+              </mat-error>
+            </div>
+          </div>
+          }
+          <button [disabled]="formGroup.disabled || !formGroup.valid" mat-flat-button color="primary" type="submit"
+            class="enroll-btn mt-10 mb-10 p-25">CREATE AN ACCOUNT</button>
+        </form>
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10" class="mt-10 mb-10">
+          <mat-divider class="w-25p"></mat-divider>
+          <p class="color-gray">Already a Member ?</p>
+          <mat-divider class="w-25p"></mat-divider>
+        </div>
+        <button mat-stroked-button color="accent" class="mt-10 mb-10 p-25 stroked-btn" [routerLink]="'/login'">SIGN IN</button>
+      </div>
+    </div>
+  </div>
+</div> -->

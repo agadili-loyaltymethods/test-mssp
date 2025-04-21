@@ -1,0 +1,21 @@
+<div
+  fxLayout="row"
+  fxFlex="100"
+  fxLayoutAlign="space-between center"
+  fxLayoutGap="10"
+  class="pt-5 pb-5 pl-20 pr-20 fw-b"
+  [ngClass]="{
+    'font-size-small' : !lineItem.size,
+    'font-size-medium': lineItem.size === 'medium',
+    'color-light-green': lineItem.color === 'green'
+  }"
+>
+  <div>{{lineItem.label}}</div>
+  <div>
+    @if(lineItem.currency) {
+    {{lineItem.value | standardCurrency}}
+    } @else {
+    {{lineItem.value | number : '1.0-0'}}
+    }
+  </div>
+</div>

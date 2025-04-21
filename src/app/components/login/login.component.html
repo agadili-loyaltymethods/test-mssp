@@ -1,0 +1,38 @@
+<!-- <div fxFlex class="container bg-white" fxLayout="row" fxLayoutAlign="start">
+    <div fxFlex="70" fxLayout="column" class="left-column" fxLayoutAlign="end start"></div>
+    <div fxFlex="30" fxLayout="column" fxLayoutAlign="center center">
+        <div fxLayout="row" fxLayoutAlign="center" class="mt-100 mb-50">
+            <img src="/assets/logo-login.svg" alt="Logo" width="250">
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center start" fxFlex="100" class="w-100p">
+            <div fxLayout="column" fxLayoutAlign="center" class="w-80p">
+                <form [formGroup]="loginForm" fxLayout="column" fxLayoutAlign="center" fxLayoutGap="20px"
+                    (ngSubmit)="onSubmit()" class="login-form">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input formControlName="username" matInput type="email" id="email">
+                        <mat-error>Email is requried!</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input formControlName="password" matInput type="password" id="password">
+                        <mat-error>Password is requried!</mat-error>
+                    </mat-form-field>
+                    <button [disabled]="loginForm.disabled || !loginForm.valid" mat-flat-button color="primary"
+                        type="submit" class="signin-btn mt-10 mb-10 p-25">SIGN IN</button>
+                    @if (showLoginProgress) {
+                        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                    }
+                </form>
+                <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10" class="mt-10 mb-10">
+                    <mat-divider class="w-25p"></mat-divider>
+                    <p class="color-gray">Not a Member ?</p>
+                    <mat-divider class="w-25p"></mat-divider>
+                </div>
+                <button mat-stroked-button color="accent" [routerLink]="'/enroll'" class="mt-10 mb-10 p-25 stroked-btn">CREATE AN ACCOUNT</button>
+                <div fxLayout="column" fxLayoutAlign="center center" class="mt-60">
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

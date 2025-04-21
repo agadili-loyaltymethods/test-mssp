@@ -1,0 +1,25 @@
+<div class="w-500 h-250">
+  <div fxLayout="row" fxLayoutAlign="start center" class="pl-20 pr-20 pt-10 pb-0">
+    <h3 class="m-0">Buy Points</h3>
+    <span fxFlex></span>
+    <button mat-icon-button [mat-dialog-close]="false">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <mat-divider></mat-divider>
+  <div fxLayout="column" class="pl-20 pr-20">
+    <mat-form-field appearance="outline" class="mt-20">
+        <mat-label>Select Required Points</mat-label>
+        <mat-select [formControl]="points">
+          @for(option of pointsList; track option){
+          <mat-option [value]="option.value">{{option.displayName}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    <mat-dialog-actions align="end">
+      <button mat-button class="mr-20" [mat-dialog-close]="false">Cancel</button>
+      <button mat-flat-button color="primary" class="h-50 w-100" [disabled]="points.invalid"
+        [mat-dialog-close]="points.value">Buy</button>
+    </mat-dialog-actions>
+  </div>
+</div>

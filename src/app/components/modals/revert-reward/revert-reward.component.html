@@ -1,0 +1,17 @@
+@if (!isLoading) {
+<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10" class="w-600 mnh-200">
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10" class="pb-20">
+        <h4>Do you want to revert {{data.name}}?</h4>
+        <span class="pt-15">{{data.desc}}</span>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10">
+        <button mat-flat-button color="primary" (click)="submit()">Confirm</button>
+        <button mat-flat-button color="accent" (click)="close(true)">Close</button>
+    </div>
+</div>
+}
+@else{
+<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30" class="p-20 w-600 mnh-200">
+    <app-loader></app-loader>
+</div>
+}

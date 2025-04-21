@@ -1,0 +1,20 @@
+<div fxLayout="column" class="mnw-600 mnh-200 p-10" fxLayoutAlign="space-between">
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="text-center">
+        <h3>
+            @if(data.title){
+                {{data.title}}
+            }
+        </h3>
+        <button mat-icon-button mat-dialog-close color="primary">&times;</button>
+    </div>
+    <div [innerHTML]="data.body"></div>
+    <div fxLayout="row" fxLayoutAlign="end end">
+        <mat-dialog-actions>
+            <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="20px">
+                <button mat-button mat-dialog-close color="accent">{{data.secondaryBtnLabel ?? 'Cancel'}}</button>
+                <button mat-flat-button color="primary" (click)="confirm()">{{data.primaryBtnLabel ?? 'Proceed'}}</button>    
+            </div>
+            
+        </mat-dialog-actions>
+    </div>
+</div>

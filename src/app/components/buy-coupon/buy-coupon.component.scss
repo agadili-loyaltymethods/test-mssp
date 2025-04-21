@@ -1,0 +1,58 @@
+h2,h3,h3,b{
+    font-family: 'SouthwestSans-Bold';
+}
+
+mat-card{
+    border: 2px solid var(--primary) !important;
+    border-radius: 20px !important;
+}
+
+.card-action{
+    border-top: 2px solid var(--primary);
+    border-top-style: dashed;
+}
+
+.coupon-code{
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing:1px;
+}
+
+.circle-1{
+    width: 25px;
+    height: 25px;
+    background-color: var(--white);
+    border-radius: 20px;
+    position: absolute;
+    top:-15px;
+    left:-15px;
+}
+.circle-2{
+    width: 25px;
+    height: 25px;
+    background-color: var(--white);
+    border-radius: 20px;
+    position: absolute;
+    top:-15px;
+    right:-15px;
+}
+
+.redeemed-card{
+    opacity:0.2;
+}
+
+.count-wrapper{
+    width: 150px;
+    border: 1px solid #dedede;
+    border-radius: 5px;
+}
+
+.rr-wrapper{
+    border: 2px solid var(--primary);
+    border-radius: 20px;
+    width: 500px;
+}
+
+.mat-drawer-content {
+    background-color: #fff !important;
+}

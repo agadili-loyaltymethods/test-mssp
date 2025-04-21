@@ -1,0 +1,49 @@
+@if(isLoading){
+<ng-container *ngTemplateOutlet="Loader"></ng-container>
+}@else{
+@if(surveys.length){
+<ng-container *ngTemplateOutlet="Surveys"></ng-container>
+}@else{
+<app-no-data>No quiz available.</app-no-data>
+}
+}
+
+<ng-template #Surveys>
+    <div fxLayout="column" class="mt-20">
+        <h3 class="mt-0">Survey ({{surveys.length}})</h3>
+        <div fxLayout="row" fxLayoutGap="20">
+            <div class="m-0" fxFlex fxLayout="row wrap" fxLayoutGap="10px grid">
+                @for (survey of surveys; track $index) {
+                <div fxFlex="25">
+                    <mat-card class="box-shadow-none border-gray bg-white">
+                        <mat-card-content fxLayout="column" fxLayoutAlign="start">
+                            <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20">
+                                <img class="w-100" src="assets/bclc-logo.png">
+                                <h3>{{ survey.title }}</h3>
+                                <div class="color-gray">{{ survey.desc }}</div>
+                                <small class="color-gray">Expires {{ survey.expiresOn| expiryCheck
+                                    }}</small>
+
+                                @if(survey.type === 'Quiz'){
+                                <button mat-stroked-button color="primary" class="w-100p"
+                                    (click)="openDialog(survey)">Participate Now</button>
+                                }@else{
+                                <button mat-stroked-button color="primary" class="w-100p"
+                                    (click)="openDialog(survey)">Participate Now</button>
+                                }
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+
+<ng-template #Loader>
+    <div class="mt-50">
+        <app-card-mini-skeleton></app-card-mini-skeleton>
+    </div>
+</ng-template>

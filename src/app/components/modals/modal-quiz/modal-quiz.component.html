@@ -1,0 +1,58 @@
+@if(!isLoading){
+<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10" class="p-20 w-600 mnh-200">
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="w-100p border-bottom pb-5">
+        <strong>{{data.title}}</strong>
+        <button mat-icon-button color="primary" (click)="close(status !== null)">&times;</button>
+    </div>
+    @if(!status){
+    <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="10">
+        <h3><strong>{{data.title}} and {{data.desc}}</strong></h3>
+        <ng-container *ngTemplateOutlet="QuizQuestions"></ng-container>
+
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10">
+        <button mat-flat-button color="accent" (click)="close()">Cancel</button>
+        <button mat-flat-button color="primary" (click)="submit()">Submit</button>
+    </div>
+
+    }@else if(status === 'won'){
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10">
+        <small><strong>Your answer is correct!</strong></small>
+        <h4>You have received <span class="color-primary font-size-large">{{earnedPoints | number}}</span> Points</h4>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10">
+        <button mat-flat-button color="primary" (click)="redirect()">Check Available Rewards</button>
+        <button mat-flat-button color="accent" (click)="close(true)">Close</button>
+    </div>
+    }
+    @else if (status === 'lost') {
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10" class="w-60p">
+        <mat-icon class="lost-icon">close</mat-icon>
+        <small class="text-center">Your answer is incorrect!</small>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10">
+        <button mat-flat-button color="accent" (click)="close()">Close</button>
+    </div>
+    }
+</div>
+
+<ng-template #QuizQuestions>
+    <div fxLayout="column" fxLayoutAlign="start start">
+        <h4 class="mb-0">
+            Which city is famously known as "The Entertainment Capital of the World" due to its abundance of casinos and luxury resorts?
+        </h4>
+        <small class="color-gray">Select 1 option</small>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <mat-radio-group class="example-radio-group" [(ngModel)]="selectedOption">
+                @for (option of radioOptions; track $index) {
+                <mat-radio-button class="example-radio-button" [value]="option">{{option}}</mat-radio-button>
+                }
+            </mat-radio-group>
+        </div>
+    </div>
+</ng-template>
+}@else{
+<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30" class="p-20 w-600 mnh-200">
+    <app-loader></app-loader>
+</div>
+}

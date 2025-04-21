@@ -1,0 +1,40 @@
+@if(isLoading){
+<ng-container *ngTemplateOutlet="Loader"></ng-container>
+}@else{
+@if(segments.length){
+<ng-container *ngTemplateOutlet="Segments"></ng-container>
+}@else{
+    <app-no-data>No coupons available.</app-no-data>
+}
+}
+
+<ng-template #Segments>
+    <div fxLayout="column" fxLayoutGap="10" class="mt-20">
+        <div fxLayout="row" fxLayoutGap="20">
+            <div class="m-0" fxFlex fxLayout="row wrap" fxLayoutGap="10px grid">
+                @for (segment of segments; track $index) {
+                    <div fxFlex="25">
+                        <mat-card class="box-shadow-none border-gray bg-white h-300" >
+                            <mat-card-content class="h-100p">
+                                <div fxLayout="column" fxLayoutAlign="space-between center" fxLayoutGap="10" class="h-100p">
+                                    <img src="assets/bclc-logo.png">
+                                    <h2 class="m-0 color-accent line-height-adjust">{{segment.name}}</h2>
+                                    <p class="color-gray mt-10">{{segment.description}}</p>
+                                    <button mat-flat-button class="w-100p" [color]="isClaimed(segment._id) ? 'accent' : 'primary'"
+                                        (click)="updateSegment(segment._id)">{{isClaimed(segment._id) ? 'Deactivate' : 'Activate'}}
+                                    </button>
+                                </div>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #Loader>
+    <div class="mt-50"> 
+        <app-card-mini-skeleton></app-card-mini-skeleton>
+    </div>
+</ng-template>

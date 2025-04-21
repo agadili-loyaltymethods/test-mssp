@@ -1,0 +1,55 @@
+.filter-container {
+    border-radius: 15px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    padding: 2px; 
+    background-color: rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+   
+  }
+  .mat-chip.selected {
+    background-color: var(--primary);
+    color: var(--white);
+  }
+
+  .empty{
+    background-color: var(--gray-100);
+
+  }
+
+  .earns{
+    color: var(--dark-green);
+    background-color: var(--light-green);
+  }
+
+  .spends{
+    color: var(--dark-red);
+    background-color: var(--light-red);
+
+  }
+  
+  .no-transactions{
+      color: black;
+      background-color: var(--gray-100);
+  }
+
+  .highlight{
+    width: fit-content;
+    border-radius: 5px;
+  }
+
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background: whitesmoke;
+  }
+  
+  tr.example-detail-row {
+    height: 0;
+  }
+  
+  .cdk-column-expandedDetail{
+    padding: 0 !important;
+    tr{
+      background-color: #f3f3f3 !important;
+    }
+  }

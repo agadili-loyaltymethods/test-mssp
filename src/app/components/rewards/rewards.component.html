@@ -1,0 +1,34 @@
+<div fxLayout="column">
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <div fxLayout="column" fxLayoutAlign="center center" class="w-1300">
+            <mat-tab-group class="w-100p mt-20" mat-stretch-tabs="false" mat-align-tabs="center"
+                [selectedIndex]="selectedIndex" (selectedTabChange)="onTabChanged($event);" animationDuration="0ms">
+                <mat-tab label="Rewards Wallet">
+                    <ng-template matTabContent>
+                        <app-rewards-wallet></app-rewards-wallet>
+                    </ng-template>
+                </mat-tab>
+                <!-- <mat-tab label="Member Benefits">
+                    <ng-template matTabContent>
+                        <app-earned-benefits></app-earned-benefits>
+                    </ng-template>
+                </mat-tab> -->
+                <mat-tab label="Exclusive Offers">
+                    <ng-template matTabContent>
+                        <app-offers></app-offers>
+                    </ng-template>
+                </mat-tab>
+                <mat-tab label="Clippable Coupons">
+                    <ng-template matTabContent>
+                        <app-clippable-coupons></app-clippable-coupons>
+                    </ng-template>
+                </mat-tab>
+                <mat-tab label="Survey">
+                    <ng-template matTabContent>
+                        <app-quiz></app-quiz>
+                    </ng-template>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>

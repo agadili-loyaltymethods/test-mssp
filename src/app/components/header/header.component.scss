@@ -1,0 +1,82 @@
+@import '../../../styles/utilities/variables.scss';
+
+button,
+h1,
+h2,
+h3,
+h4,
+h5,
+li,
+p,
+ul {
+    margin: 0;
+    padding: 0;
+
+}
+
+nav {
+    height: 70px;
+    background-color: var(--white);
+    color: var(--black);
+    border-bottom: 1px solid #E8E7E4;
+    padding: 20px;
+    width: 100%;
+    z-index: 1000 !important;
+
+    img {
+        width: 100px;
+    }
+
+    label {
+        text-align: center;
+    }
+
+}
+
+label {
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.nav-item {
+    border-bottom: 2px solid #fff;
+}
+
+.router-link-active {
+    background-color: #f0f3f5;
+    border-radius: 0 !important;
+    border-bottom: 3px solid var(--primary);
+
+    .mat-icon,
+    label {
+        color: var(--primary);
+    }
+}
+
+
+.nav-item:hover {
+    background-color: #f0f3f5;
+    border-bottom: 3px solid var(--primary) !important;
+
+    .mat-icon,
+    label {
+        color: var(--primary);
+    }
+}
+
+.nav-item:active {
+    background-color: #f0f3f5;
+    border-bottom: 3px solid var(--primary) !important;
+
+    .mat-icon,
+    label {
+        color: var(--primary);
+    }
+}
+
+.small-icon {
+    font-size: 12px;
+    width: 12px;
+    height: 12px;
+    vertical-align: -webkit-baseline-middle ;
+}

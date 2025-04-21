@@ -1,0 +1,50 @@
+<header>
+    <nav fxFlex="100" fxLayout="row" fxLayoutAlign="center center">
+        <div class="w-1440" fxLayoutAlign="start center">
+            <!-- left section -->
+            <div fxFlex="15" fxLayoutAlign="start center">
+                <img class="cursor-pointer w-75" [routerLink]="'/'" src="assets/bclc-logo.png" />
+            </div>
+            <!-- middle section -->
+            <div fxFlex="55" fxLayoutAlign="start center">
+                <div fxLayout="row" fxLayoutAlign="center center" class="text-center">
+                    <div fxLayout="column" fxLayoutAlign="end center" fxLayoutGap="5" fxLayoutGap="5"
+                        class="p-10 pl-30 pr-30 cursor-pointer nav-item" [routerLink]="['/dashboard']"
+                        routerLinkActive="router-link-active">
+                        <mat-icon aria-hidden="false" aria-label="Dashboard" [svgIcon]="'view-dashboard'"></mat-icon>
+                        <label>Dashboard</label>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="end center" fxLayoutGap="5"
+                        class="p-10 pl-30 pr-30 cursor-pointer nav-item" [routerLink]="['/rewards']"
+                        routerLinkActive="router-link-active">
+                        <mat-icon aria-hidden="false" aria-label="Rewards" [svgIcon]="'gift-outline'"></mat-icon>
+                        <label>Rewards</label>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="end center" fxLayoutGap="5"
+                        class="p-10 pl-30 pr-30 cursor-pointer nav-item" [routerLink]="['/purchase-history']"
+                        routerLinkActive="router-link-active">
+                        <mat-icon aria-hidden="false" aria-label="Purchase History" [svgIcon]="'history'"></mat-icon>
+                        <label>Activity History</label>
+                    </div>
+                    <a fxLayout="column" fxLayoutAlign="end center" fxLayoutGap="5" target="_blank"
+                        class="pt-10 pl-30 pr-30 cursor-pointer nav-item m-0 pb-4" (click)="openExternalLink('hotel-booking')">
+                        <mat-icon aria-hidden="false" aria-label="Purchase History" [svgIcon]="'hotel'"></mat-icon>
+                        <label>Hotel Booking <mat-icon class="small-icon pb-8" color="primary">open_in_new</mat-icon></label>
+                    </a>
+                    <a fxLayout="column" fxLayoutAlign="end center" fxLayoutGap="5" target="_blank"
+                        class="pt-10 pl-30 pr-30 cursor-pointer nav-item pb-4" (click)="openExternalLink('casino')">
+                        <mat-icon aria-hidden="false" aria-label="Purchase History" [svgIcon]="'casino'"></mat-icon>
+                        <label>Casino <mat-icon class="small-icon pb-8" color="primary">open_in_new</mat-icon></label>
+                    </a >
+                </div>
+            </div>
+            <!-- right section -->
+            <div fxFlex="30">
+                <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="40" class="right-menu-icons">
+                    <app-locations></app-locations>
+                    <app-profile></app-profile>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>

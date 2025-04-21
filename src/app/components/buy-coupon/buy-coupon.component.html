@@ -1,0 +1,74 @@
+<div fxLayout="row" fxLayoutAlign="start center" class="pl-20 pr-20 pt-10 pb-0 mb-10">
+    <h3 class="m-0">Buy Coupons</h3>
+    <span fxFlex></span>
+    <button mat-icon-button (click)="closeDrawer()">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+<mat-divider></mat-divider>
+<div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px" class="mr-15 mt-10">
+    <div fxLayout="column mr-10">
+        <div class="color-gray">Points Available</div>
+        <h1 class="color-primary text-left mt-0 mb-0">{{memberInfo.purses[0].availBalance | number : '1.0-0'}}
+        </h1>
+    </div>
+</div>
+<div fxLayout="row wrap" fxLayoutGap="20" class="pl-40 pt-20">
+    @for(coupon of couponList; track coupon){
+    <mat-card fxFlex="45">
+        <div fxLayout="row" fxLayoutAlign="end center" class="pr-20 pt-20">
+            
+        </div>
+        <mat-card-header class="pt-10 mb-20">
+            <mat-card-title-group>
+                <mat-card-title>
+                    <h2 class="color-primary mb-20">{{coupon.desc}}</h2>
+                </mat-card-title>
+            </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content class="mb-20">
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <h2 class="color-primary mr-5">{{coupon.ext.rewardCost}}</h2>
+                <p class="color-gray">RR Points</p>
+            </div>
+        </mat-card-content>
+        <mat-card-actions fxLayout="row" fxLayoutAlign="center center" class="card-action position-relative">
+            <div class="circle-1"></div>
+            <div class="circle-2"></div>
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="count-wrapper">
+                <button mat-icon-button [disabled]="!coupon.count" (click)="reduceCount(coupon)">
+                    <mat-icon>remove</mat-icon>
+                </button>
+                <h3>{{coupon.count ?? 0}}</h3>
+                <button mat-icon-button (click)="increaseCount(coupon)">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+    }
+</div>
+@if(hasCoupons()){
+<div fxLayout="row" fxLayoutAlign="center" class="mt-50">
+    <div fxLayout="column" fxLayoutGap="20" class="rr-wrapper bg-light-primary p-20">
+        <h3 class="text-center color-primary">Coupon Purchase Summary</h3>
+        @for(coupon of couponList; track coupon){
+        @if(coupon.count){
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <h4>{{coupon.desc}} X {{coupon.count}}</h4>
+            <h3>{{coupon.ext.rewardCost * coupon.count | number : '1.0-0'}}</h3>
+        </div>
+        }
+        }
+
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <h3>RR Points to Spend</h3>
+            <h2>{{totalPoints() | number : '1.0-0'}}</h2>
+        </div>
+    </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="end center" class="mr-20 mt-30">
+    <button mat-button class="mr-20" (click)="closeDrawer()">Cancel</button>
+    <button mat-flat-button color="primary" class="h-50 w-150" (click)="buyCoupon()">Purchase</button>
+</div>
+}
